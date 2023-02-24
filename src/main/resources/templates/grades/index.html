@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title th:text="${title}"></title>
+</head>
+<body>
+    <h1>Grades List</h1>
+
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Grade</th>
+            <th>Short</th>
+        </thead>
+        <tbody>
+            <tr th:each="grade : ${grades}">
+                <td th:text="${grade.id}">0</td>
+                <td th:text="${grade.name}">0</td>
+                <td th:text="${grade.shortName}">0</td>
+            </tr>
+        </tbody>
+    </table>            
+</body>
+</html>

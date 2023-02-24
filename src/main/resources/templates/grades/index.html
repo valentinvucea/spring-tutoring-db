@@ -1,24 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title th:text="${title}"></title>
-</head>
-<body>
-    <h1>Grades List</h1>
-
-    <table>
-        <thead>
-            <th>ID</th>
-            <th>Grade</th>
-            <th>Short</th>
-        </thead>
-        <tbody>
-            <tr th:each="grade : ${grades}">
-                <td th:text="${grade.id}">0</td>
-                <td th:text="${grade.name}">0</td>
-                <td th:text="${grade.shortName}">0</td>
-            </tr>
-        </tbody>
-    </table>            
-</body>
+<!doctype html>
+<html th:replace="~{/fragments/layout :: layout(~{::title}, ~{}, ~{}, ~{::main})}">
+    <head>
+        <title th:text="${titleThis}"></title>
+    </head>     
+    <body>
+        <main role="main">
+            <div class="container mt-3">
+                <h3>Grades</h3>
+                <hr>                
+                
+                <div class="d-flex justify-content-between">
+                    <h4 class="mb-4">List</h4>
+                    <div><a class="btn btn-primary" href="/grades/add" role="button">Add New Grade</a></div>
+                </div>
+                
+                <div>
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col" class="text-center">ID</th>
+                                <th scope="col">Grade</th>
+                                <th scope="col">Short Name</th>
+                                <th scope="col" class="text-center">...</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="grade : ${grades}">
+                                <th scope="row" class="text-center" th:text="${grade.id}"></th>
+                                <td th:text="${grade.name}"></td>
+                                <td th:text="${grade.shortName}"></td>
+                                <td class="text-center">...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </body>
 </html>

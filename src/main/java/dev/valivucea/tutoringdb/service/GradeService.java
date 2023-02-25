@@ -16,4 +16,7 @@ public interface GradeService {
 
     // Delete operation
     void deleteGrade(Long id);
+
+    // Retrieve an existing grade
+    Grade getGradeById(Long id);
 }

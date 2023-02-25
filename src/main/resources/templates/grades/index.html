@@ -30,9 +30,9 @@
                                 <td th:text="${grade.name}"></td>
                                 <td th:text="${grade.shortName}"></td>
                                 <td class="text-center">
-                                    <a href="#"><i class="bi-eye-fill"></i></a>
-                                    <a href="#"><i class="bi-pencil-fill"></i></a>
-                                    <a href="#"><i class="bi-trash-fill"></i></i></a>
+                                    <!-- <a href="#"><i class="bi-eye-fill"></i></a> -->
+                                    <a th:href="|/grades/edit/${grade.id}|"><i class="bi-pencil-fill"></i></a>
+                                    <a th:href="|/grades/delete/${grade.id}|"><i class="bi-trash-fill"></i></i></a>
                                 </td>
                             </tr>
                         </tbody>

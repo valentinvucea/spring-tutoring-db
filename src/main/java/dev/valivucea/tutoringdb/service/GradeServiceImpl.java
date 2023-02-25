@@ -30,13 +30,21 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     public Grade updateGrade(Grade grade, Long id) {
-        Grade oldGrade = gradeRepository.findById(id).get();
-
-        return gradeRepository.save(oldGrade);
+        grade.setId(id);
+        return gradeRepository.save(grade);
     }
 
     @Override
     public void deleteGrade(Long id) {
-        gradeRepository.deleteById(id);
+        Grade grade = gradeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Grade not found - Id: " + id));
+
+        gradeRepository.delete(grade);
     }
+
+    @Override
+    public Grade getGradeById(Long id) {
+        return gradeRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Grade not found - Id: " + id));
+    }    
 }

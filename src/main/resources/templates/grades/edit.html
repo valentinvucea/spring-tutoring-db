@@ -1,0 +1,35 @@
+<!doctype html>
+<html th:replace="~{/fragments/layout :: layout(~{::title}, ~{}, ~{}, ~{::main})}">
+    <head>
+        <title>Grades | Add New Grade</title>
+    </head>     
+    <body>
+        <main role="main">
+            <div class="container mt-3">
+                <h3>Grades</h3>
+                <hr>                
+                <h4 class="mb-4" th:text="|Edit Grade # ${grade.id}|">Edit Grade</h4>
+                
+                <div class="row">
+                    <div class="col-4">
+                        <form action="#" th:action="@{/grades/edit/{id}(id=${grade.id})}" th:object="${grade}" method="post">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" th:field="*{name}" class="form-control" id="name" aria-describedby="name">
+                                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Short Name</label>
+                                <input type="text" th:field="*{shortName}" class="form-control" id="shortName" aria-describedby="shortName">
+                                <span th:if="${#fields.hasErrors('shortName')}" th:errors="*{shortName}"></span>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>                        
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

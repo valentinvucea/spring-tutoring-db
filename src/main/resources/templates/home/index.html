@@ -1,9 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title th:text="${title}"></title>
-</head>
-<body>
-    <h1 th:text="${message}"></h1>
-</body>
+<!doctype html>
+<html th:replace="~{/fragments/layout :: layout(~{::title}, ~{}, ~{}, ~{::main})}">
+    <head>
+        <title th:text="${titleThis}"></title>
+    </head>     
+    <body>
+        <main role="main" class="flex-shrink-0">
+            <div class="container mt-3">
+                <h3>Dashboard</h3>
+                <hr>                
+                
+                <div class="mt-3">
+                    Hello World!
+                </div>
+            </div>
+        </main>
+    </body>
 </html>

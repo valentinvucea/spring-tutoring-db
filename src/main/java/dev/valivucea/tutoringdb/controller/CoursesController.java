@@ -31,7 +31,8 @@ public class CoursesController {
     
     @GetMapping({"/courses", "courses/", "courses/index"})
     public String showListPage(Model model) {
-        List<Course> courses = courseService.getCourseList();
+        //List<Course> courses = courseService.getCourseList();
+        List<Course> courses = courseService.getCourseListOrdered();
         model.addAttribute("courses", courses);
         
         return "/courses/index";

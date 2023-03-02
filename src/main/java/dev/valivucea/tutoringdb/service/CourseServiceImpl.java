@@ -3,6 +3,7 @@ package dev.valivucea.tutoringdb.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import dev.valivucea.tutoringdb.model.Course;
@@ -46,5 +47,12 @@ public class CourseServiceImpl implements CourseService {
     public Course getCourseById(Long id) {
         return CourseRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Course not found - Id: " + id));
+    }
+
+    @Override
+    public List<Course> getCourseListOrdered() {
+        return (List<Course>) CourseRepository.findAll(
+            Sort.by(Sort.Direction.ASC, "grade.name").and(Sort.by(Sort.Direction.ASC, "subject.name"))
+        );
     }    
 }

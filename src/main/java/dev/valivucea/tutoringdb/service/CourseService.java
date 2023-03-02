@@ -19,4 +19,6 @@ public interface CourseService {
 
     // Retrieve an existing Course
     Course getCourseById(Long id);
+
+    List<Course> getCourseListOrdered();
 }

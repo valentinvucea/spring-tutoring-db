@@ -1,0 +1,48 @@
+<!doctype html>
+<html th:replace="~{/fragments/layout :: layout(~{::title}, ~{}, ~{}, ~{::main})}">
+    <head>
+        <title>Courses | Add New Course</title>
+    </head>     
+    <body>
+        <main role="main">
+            <div class="container mt-3">
+                <h3>Courses</h3>
+                <hr>                
+                <h4 class="mb-4">Add New Course</h4>
+                
+                <div class="row">
+                    <div class="col-4">
+                        <form action="#" th:action="@{/courses/add}" th:object="${course}" method="post">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Grade</label>
+                                <select class="form-select" th:field="*{grade}" aria-label="Grade dropdown">
+                                    <option selected value="0">Select an option</option>
+                                    <option 
+                                        th:each="grade : ${grades}" 
+                                        th:value="${grade.id}" 
+                                        th:text="${grade.name}">
+                                    </option>
+                                </select>                               
+                                <span th:if="${#fields.hasErrors('grade')}" th:errors="*{grade}"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Subject</label>
+                                <select class="form-select" th:field="*{subject}" aria-label="Subject dropdown">
+                                    <option selected value="0">Select an option</option>
+                                    <option 
+                                        th:each="subject : ${subjects}" 
+                                        th:value="${subject.id}" 
+                                        th:text="${subject.name}">
+                                    </option>
+                                </select>                               
+                                <span th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></span>
+                            </div>                            
+                            
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>                        
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

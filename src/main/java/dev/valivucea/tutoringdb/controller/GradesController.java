@@ -26,21 +26,21 @@ public class GradesController {
         model.addAttribute("titleThis", "Spring Boot Tutorial | Grades List");
         model.addAttribute("grades", grades);
 
-        return "/grades/index";
+        return "grades/index";
     }
 
     @GetMapping({"grades/add"})
     public String showAddGradeForm(Model model) {
         model.addAttribute("grade", new Grade());
         
-        return "/grades/add";
+        return "grades/add";
     }
     
     @PostMapping({"grades/add"})
     public String createNewGrade(@ModelAttribute Grade grade, Model model) {
         gradeService.createGrade(grade);
         
-        return "redirect:/grades/index";
+        return "redirect:grades/index";
     }
     
     @GetMapping({"grades/edit/{id}"})
@@ -48,20 +48,20 @@ public class GradesController {
         Grade grade = gradeService.getGradeById(id);   
         model.addAttribute("grade", grade);
 
-        return "/grades/edit";
+        return "grades/edit";
     }
     
     @PostMapping("grades/edit/{id}")
     public String updateGrade(@PathVariable("id") long id, @ModelAttribute Grade grade, Model model) {
         gradeService.updateGrade(grade, id);
 
-        return "redirect:/grades/index";
+        return "redirect:grades/index";
     }
 
     @GetMapping("grades/delete/{id}")
     public String deleteGrade(@PathVariable("id") long id, Model model) {
         gradeService.deleteGrade(id);
 
-        return "redirect:/grades/index";
+        return "redirect:grades/index";
     }    
 }

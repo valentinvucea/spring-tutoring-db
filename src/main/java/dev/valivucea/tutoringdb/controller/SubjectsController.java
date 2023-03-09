@@ -31,7 +31,7 @@ public class SubjectsController {
     public String showAddSubjectForm(Model model) {
         model.addAttribute("subject", new Subject());
         
-        return "/subjects/add";
+        return "subjects/add";
     }
     
     @PostMapping({"subjects/add"})

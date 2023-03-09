@@ -24,7 +24,7 @@ public class SubjectsController {
         List<Subject> subjects = subjectService.getSubjectList();
         model.addAttribute("subjects", subjects);
 
-        return "/subjects/index";
+        return "subjects/index";
     }
 
     @GetMapping({"subjects/add"})
@@ -46,7 +46,7 @@ public class SubjectsController {
         Subject Subject = subjectService.getSubjectById(id);   
         model.addAttribute("subject", Subject);
 
-        return "/subjects/edit";
+        return "subjects/edit";
     }
     
     @PostMapping("subjects/edit/{id}")

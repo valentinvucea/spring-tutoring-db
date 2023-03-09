@@ -40,7 +40,7 @@ public class GradesController {
     public String createNewGrade(@ModelAttribute Grade grade, Model model) {
         gradeService.createGrade(grade);
         
-        return "redirect:grades/index";
+        return "redirect:/grades/index";
     }
     
     @GetMapping({"grades/edit/{id}"})
@@ -55,13 +55,13 @@ public class GradesController {
     public String updateGrade(@PathVariable("id") long id, @ModelAttribute Grade grade, Model model) {
         gradeService.updateGrade(grade, id);
 
-        return "redirect:grades/index";
+        return "redirect:/grades/index";
     }
 
     @GetMapping("grades/delete/{id}")
     public String deleteGrade(@PathVariable("id") long id, Model model) {
         gradeService.deleteGrade(id);
 
-        return "redirect:grades/index";
+        return "redirect:/grades/index";
     }    
 }

@@ -11,6 +11,6 @@ public class HomeController {
     public String showHomePage(Model model) {
         model.addAttribute("message", "Hello World!");
 
-        return "/home/index";
+        return "home/index";
     }
 }

@@ -35,7 +35,7 @@ public class CoursesController {
         List<Course> courses = courseService.getCourseListOrdered();
         model.addAttribute("courses", courses);
         
-        return "/courses/index";
+        return "courses/index";
     }
 
     @GetMapping({"courses/add"})
@@ -47,7 +47,7 @@ public class CoursesController {
         model.addAttribute("subjects", subjects);        
         model.addAttribute("course", new Course());
         
-        return "/courses/add";
+        return "courses/add";
     }
     
     @PostMapping({"courses/add"})
@@ -67,7 +67,7 @@ public class CoursesController {
         model.addAttribute("subjects", subjects);    
         model.addAttribute("course", course);
 
-        return "/courses/edit";
+        return "courses/edit";
     }
     
     @PostMapping("courses/edit/{id}")

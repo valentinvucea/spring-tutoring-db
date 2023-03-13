@@ -26,5 +26,7 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn clean install
+    - name: Run java jar
+      run: java -jar /home/ubuntu/apps/actions-runner/_work/spring-tutoring-db/spring-tutoring-db/target/tutoringdb-0.0.1-SNAPSHOT.jar
       

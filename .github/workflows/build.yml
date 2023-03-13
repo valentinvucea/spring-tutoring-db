@@ -26,7 +26,7 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Copy application.properties
-      run: cp /app/spring-tutoring-db/src/main/resources/application.properties /home/ubuntu/apps/actions-runner/_work/spring-tutoring-db/spring-tutoring-db/main/serc/resources/application.properties
+      run: cp /app/spring-tutoring-db/src/main/resources/application.properties /home/ubuntu/~/apps/actions-runner/_work/spring-tutoring-db/spring-tutoring-db/src/main/resources/application.properties
     - name: Build with Maven
       run: mvn clean install
     - name: Run java jar

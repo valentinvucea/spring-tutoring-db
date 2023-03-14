@@ -1,0 +1,53 @@
+<!doctype html>
+<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{}, ~{::main})}">
+    <head>
+        <title th:text="${titleThis}"></title>
+    </head>     
+    <body>
+        <main role="main" class="flex-shrink-0">
+            <div class="container mt-3">
+                <h3>Students</h3>
+                <hr>                
+                
+                <div class="d-flex justify-content-between">
+                    <h4 class="mb-4">List</h4>
+                    <div><a class="btn btn-primary" href="/students/add" role="button">Add New Student</a></div>
+                </div>
+                
+                <div>
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col" class="text-center">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Grade</th>
+                                <th scope="col">Parent</th>
+                                <th scope="col">Contact</th>
+                                <th scope="col"class="text-center">Active</th>
+                                <th scope="col" class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="student : ${students}">
+                                <th scope="row" class="text-center" th:text="${student.id}"></th>
+                                <td th:text="|${student.firstName} ${student.lastName}"></td>
+                                <td th:text="${student.grade.name}"></td>
+                                <td th:text="${student.parentName}"></td>
+                                <td th:utext="|${student.parentEmail}<br>${student.parentPhone}"></td>
+                                <td class="text-center">
+                                    <span th:if="${student.active}"><i class="bi fs-4 text-success bi-toggle-on"></i></span>
+                                    <span th:unless="${student.active}"><i class="bi fs-4 text-muted bi-toggle-off"></i></span>
+                                </td>
+                                </td>
+                                <td class="text-center">
+                                    <a th:href="|/students/edit/${student.id}|"><i class="bi-pencil-fill"></i></a>
+                                    <a th:href="|/students/delete/${student.id}|"><i class="bi-trash-fill"></i></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

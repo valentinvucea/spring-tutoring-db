@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,6 +31,10 @@ public class Student {
     @Column(length = 14, nullable = false)
     private String phone;
 
+    @ManyToOne(targetEntity = Grade.class)
+    @JoinColumn(name = "grade_id")
+    private Grade grade;    
+
     @Column(name = "parent_name")
     private String parentName;
 
@@ -41,6 +47,7 @@ public class Student {
     @Column(columnDefinition="TEXT", length = 4000)
     private String comments;
     
+    @Column(nullable = false)
     @ColumnDefault(value = "0")
     private int active;
 
@@ -103,5 +110,11 @@ public class Student {
     }
     public void setActive(int active) {
         this.active = active;
+    }
+    public Grade getGrade() {
+        return grade;
+    }
+    public void setGrade(Grade grade) {
+        this.grade = grade;
     }
 }

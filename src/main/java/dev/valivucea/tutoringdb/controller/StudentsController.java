@@ -28,17 +28,16 @@ public class StudentsController {
     @Autowired
     private GradeService gradeService;
        
-    @RequestMapping(value = {"/students", "students/", "/students/{page}", "students/{page}"}, method = RequestMethod.GET)
-    public String showListPage(Model model, @PathVariable Optional<Integer> pageNo) {
+    @GetMapping({"/students", "students/", "/students/{page}", "students/{page}"})
+    public String showListPage(Model model, @PathVariable(required = false) Integer page) {
         // List<Student> students = studentService.getStudentListOrdered();
         int currentPage = 1;
-        if (pageNo.isPresent()) {
-            currentPage = pageNo.get();
+        if (page != null) {
+            currentPage = page;
         }
-        
-        Page<Student> page = studentService.getStudentListPage(currentPage, 10);
-        
-        model.addAttribute("students", page.getContent());
+    
+        Page<Student> pageData = studentService.getStudentListPage(currentPage, 10);    
+        model.addAttribute("students", pageData.getContent());
         
         return "students/index";
     }

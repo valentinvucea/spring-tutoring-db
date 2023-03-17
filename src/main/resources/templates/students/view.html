@@ -1,0 +1,111 @@
+<!doctype html>
+<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{}, ~{::main})}">
+    <head>
+        <title>Students | View New Student</title>
+    </head>     
+    <body>
+        <main role="main">
+            <div class="container mt-3">
+                <h3>Students</h3>
+                <hr>                
+                <h4 class="mb-4" th:text="|View Student #${student.id}|"></h4>
+                
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label for="name" class="form-label">First Name</label>
+                    </div>
+                    <div class="col-10">
+                        <span th:text="${student.firstName}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label for="name" class="form-label">Last Name</label>
+                    </div>
+                    <div class="col-10">
+                        <span th:text="${student.lastName}"></span>
+                    </div>
+                </div> 
+                
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label for="name" class="form-label">Grade</label>
+                    </div>
+                    <div class="col-10">
+                        <span th:text="${student.grade.name}"></span>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label for="name" class="form-label">Email</label>
+                    </div>
+                    <div class="col-10">
+                        <span th:text="${student.email}"></span>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label for="name" class="form-label">Phone</label>
+                    </div>
+                    <div class="col-10">
+                        <span th:text="${student.phone}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label for="name" class="form-label">Parent Name</label>
+                    </div>
+                    <div class="col-10">
+                        <span th:text="${student.parentName}"></span>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label for="name" class="form-label">Parent Email</label>
+                    </div>
+                    <div class="col-10">
+                        <span th:text="${student.parentEmail}"></span>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label for="name" class="form-label">Parent Phone</label>
+                    </div>
+                    <div class="col-10">
+                        <span th:text="${student.parentPhone}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label for="name" class="form-label">Active</label>
+                    </div>
+                    <div class="col-10">
+                        <span th:text="${student.active}"></span>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label for="name" class="form-label">Comments</label>
+                    </div>
+                    <div class="col-10">
+                        <span th:text="${student.comments}"></span>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col">
+                        <a th:href="|/students/|" role="button" class="btn btn-secondary">Back to List</a> 
+                    </div>
+                </div>                 
+            </div>
+        </main>
+    </body>
+</html>

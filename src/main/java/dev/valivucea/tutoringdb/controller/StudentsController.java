@@ -51,11 +51,11 @@ public class StudentsController {
 
     @GetMapping({"students/edit/{id}"})
     public String showEditStudentForm(@PathVariable("id") long id, Model model) {
-        Student Student = studentService.getStudentById(id);
+        Student student = studentService.getStudentById(id);
         List<Grade> grades = gradeService.getGradeList();
 
         model.addAttribute("grades", grades);
-        model.addAttribute("Student", Student);
+        model.addAttribute("student", student);
 
         return "students/edit";
     }
@@ -72,5 +72,16 @@ public class StudentsController {
         studentService.deleteStudent(id);
 
         return "redirect:/students/index";
-    }     
+    }
+    
+    @GetMapping({"students/view/{id}"})
+    public String showViewStudentForm(@PathVariable("id") long id, Model model) {
+        Student student = studentService.getStudentById(id);
+        List<Grade> grades = gradeService.getGradeList();
+
+        model.addAttribute("grades", grades);
+        model.addAttribute("student", student);
+
+        return "students/view";
+    }    
 }

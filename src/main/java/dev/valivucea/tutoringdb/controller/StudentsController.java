@@ -38,6 +38,8 @@ public class StudentsController {
     
         Page<Student> pageData = studentService.getStudentListPage(currentPage, 10);    
         model.addAttribute("students", pageData.getContent());
+        model.addAttribute("current", currentPage);
+        model.addAttribute("total", pageData.getTotalPages());
         
         return "students/index";
     }

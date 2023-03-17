@@ -1,14 +1,18 @@
 package dev.valivucea.tutoringdb.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import dev.valivucea.tutoringdb.model.Student;
 import dev.valivucea.tutoringdb.model.Grade;
@@ -24,10 +28,17 @@ public class StudentsController {
     @Autowired
     private GradeService gradeService;
        
-    @GetMapping({"/students", "students/", "students/index"})
-    public String showListPage(Model model) {
-        List<Student> students = studentService.getStudentListOrdered();
-        model.addAttribute("students", students);
+    @RequestMapping(value = {"/students", "students/", "/students/{page}", "students/{page}"}, method = RequestMethod.GET)
+    public String showListPage(Model model, @PathVariable Optional<Integer> pageNo) {
+        // List<Student> students = studentService.getStudentListOrdered();
+        int currentPage = 1;
+        if (pageNo.isPresent()) {
+            currentPage = pageNo.get();
+        }
+        
+        Page<Student> page = studentService.getStudentListPage(currentPage, 10);
+        
+        model.addAttribute("students", page.getContent());
         
         return "students/index";
     }

@@ -2,6 +2,8 @@ package dev.valivucea.tutoringdb.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import dev.valivucea.tutoringdb.model.Student;
 
 public interface StudentService {
@@ -22,4 +24,7 @@ public interface StudentService {
 
     // Get list of students ordered
     List<Student> getStudentListOrdered();
+
+    // Get list of students paginated
+    Page<Student> getStudentListPage(int pageNumber, int pageSize);
 }

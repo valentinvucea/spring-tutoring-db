@@ -3,6 +3,9 @@ package dev.valivucea.tutoringdb.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -54,5 +57,11 @@ public class StudentServiceImpl implements StudentService {
         return (List<Student>) studentRepository.findAll(
             Sort.by(Sort.Direction.ASC, "firstName").and(Sort.by(Sort.Direction.ASC, "lastName"))
         );
-    }    
+    }
+    
+    @Override
+    public Page<Student> getStudentListPage(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+        return (Page<Student>) studentRepository.findAll(pageable);
+    }
 }

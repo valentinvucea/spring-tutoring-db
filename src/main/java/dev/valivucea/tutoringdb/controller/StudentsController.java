@@ -28,7 +28,7 @@ public class StudentsController {
     @Autowired
     private GradeService gradeService;
        
-    @GetMapping({"/students", "students/", "/students/{page}", "students/{page}"})
+    @GetMapping({"/students", "/students/", "/students/index", "/students/{page}", "students/{page}"})
     public String showListPage(Model model, @PathVariable(required = false) Integer page) {
         // List<Student> students = studentService.getStudentListOrdered();
         int currentPage = 1;

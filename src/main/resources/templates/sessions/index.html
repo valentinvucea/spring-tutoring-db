@@ -1,0 +1,80 @@
+<!doctype html>
+<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{}, ~{::main})}">
+    <head>
+        <title th:text="${titleThis}"></title>
+    </head>     
+    <body>
+        <main role="main" class="flex-shrink-0">
+            <div class="container mt-3">
+                <h3>Sessions</h3>
+                <hr>                
+                
+                <div class="d-flex justify-content-between">
+                    <h4 class="mb-4">List</h4>
+                    <div><a class="btn btn-primary" href="/sessions/add" role="button">Add New Session</a></div>
+                </div>
+                
+                <div>
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col" class="text-center">ID</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Student</th>
+                                <th scope="col">Parent</th>
+                                <th scope="col">Grade</th>
+                                <th scope="col" class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="entry : ${sessions}">
+                                <th scope="row" class="text-center" th:text="${entry.id}"></th>
+                                <td th:text="|${entry.sessionDate}"></td>
+                                <td th:text="${entry.student.firstName}"></td>
+                                <td th:text="${entry.grade.name}"></td>
+                                <td class="text-center">
+                                    <a th:href="|/sessions/edit/${entry.id}|"><i class="bi-pencil-fill"></i></a>
+                                    <a th:href="|/sessions/delete/${entry.id}|"><i class="bi-trash-fill"></i></i></a>
+                                    <a th:href="|/sessions/view/${entry.id}|"><i class="bi-eye-fill"></i></i></a>                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <!-- <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item font-weight-bold" th:classappend="${current == 1} ? 'disabled'">
+                            <a class="page-link" th:href="|/sessions/${current - 1}|">Prev</a>
+                        </li>
+                        <li class="page-item disabled" th:if="${current - 2 > 1}">
+                            <a class="page-link" href="#">...</a>
+                        </li>
+                        <li class="page-item" th:if="${current > 2}">
+                            <a class="page-link" th:href="|/sessions/${current - 2}|" th:text="${current - 2}"></a>
+                        </li>
+                        <li class="page-item" th:if="${current > 1}">
+                            <a class="page-link" th:href="|/sessions/${current - 1}|" th:text="${current - 1}"></a>
+                        </li>
+                        <li class="page-item active">
+                            <span class="page-link" th:text="${current}">/span>
+                        </li>
+                        <li class="page-item" th:if="${total > current}">
+                            <a class="page-link" th:href="|/sessions/${current + 1}|" th:text="${current + 1}"></a>
+                        </li>
+                        <li class="page-item" th:if="${total > current + 1}">
+                            <a class="page-link" th:href="|/sessions/${current + 2}|" th:text="${current + 2}"></a>
+                        </li>                        
+                        <li class="page-item disabled" th:if="${total > current + 2}">
+                            <a class="page-link" href="#">...</a>
+                        </li>
+                        <li class="page-item font-weight-bold" th:classappend="${current == total} ? 'disabled'">
+                            <a class="page-link" th:href="|/sessions/${current + 1}|">Next</a>
+                        </li>
+                    </ul>
+                </nav> -->
+            </div>
+        </main>
+    </body>
+</html>

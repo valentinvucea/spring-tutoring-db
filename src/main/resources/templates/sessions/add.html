@@ -1,0 +1,60 @@
+<!doctype html>
+<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{}, ~{::main})}">
+    <head>
+        <title>Sessions | Add New Session</title>
+    </head>     
+    <body>
+        <main role="main">
+            <div class="container mt-3">
+                <h3>Sessions</h3>
+                <hr>                
+                <h4 class="mb-4">Add New Sessions</h4>
+                
+                <div class="row">
+                    <div class="col-4">
+                        <form action="#" th:action="@{/sessions/add}" th:object="${session}" method="post">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Date</label>
+                                <input type="date" th:value="${sessionDate}" th:field="*{sessionDate}" class="form-control" id="sessionDate" aria-describedby="sessionDate" min="2020-01-01">
+                                <span th:if="${#fields.hasErrors('sessionDate')}" th:errors="*{sessionDate}"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Student</label>
+                                <select class="form-select" th:field="*{student}" aria-label="Student dropdown">
+                                    <option selected value="0">Select an option</option>
+                                    <option 
+                                        th:each="student : ${students}" 
+                                        th:value="${student.id}" 
+                                        th:text="${student.getFullName()}">
+                                    </option>
+                                </select>                               
+                                <span th:if="${#fields.hasErrors('student')}" th:errors="*{student}"></span>
+                            </div>                            
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Grade</label>
+                                <select class="form-select" th:field="*{grade}" aria-label="Grade dropdown">
+                                    <option selected value="0">Select an option</option>
+                                    <option 
+                                        th:each="grade : ${grades}" 
+                                        th:value="${grade.id}" 
+                                        th:text="${grade.name}">
+                                    </option>
+                                </select>                               
+                                <span th:if="${#fields.hasErrors('grade')}" th:errors="*{grade}"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Lesson</label>
+                                <textarea th:field="*{lesson}" rows="5" class="form-control" id="lesson" aria-describedby="lesson"></textarea>
+                                <span th:if="${#fields.hasErrors('lesson')}" th:errors="*{lesson}"></span>
+                            </div>                                                        
+                                                       
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a th:href="|/sessions/|" role="button" class="btn btn-secondary">Back to List</a>                            
+                        </form>                        
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </body>
+</html>

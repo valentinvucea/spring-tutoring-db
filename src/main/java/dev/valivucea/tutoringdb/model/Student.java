@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "students")
@@ -117,4 +118,8 @@ public class Student {
     public void setGrade(Grade grade) {
         this.grade = grade;
     }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }    
 }

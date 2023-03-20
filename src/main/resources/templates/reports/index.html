@@ -1,0 +1,66 @@
+<!doctype html>
+<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{}, ~{::main})}">
+    <head>
+        <title>Reports Page</title>
+    </head>     
+    <body>
+        <main role="main" class="flex-shrink-0">
+            <div class="container mt-3">
+                <h3>Reports</h3>
+                <hr>                
+            </div>
+
+            <div class="container mt-3">
+                <h4>Student Report By Quarter</h4>
+
+                <div class="mt-3 col-4">
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="name" class="form-label">Year</label>
+                                <select class="form-select" id="year" aria-label="Year dropdown" th:onchange="reloadPage()">
+                                    <option 
+                                        th:each="yearRow : ${years}" 
+                                        th:value="${yearRow}" 
+                                        th:selected="(${yearRow} == ${year})"
+                                        th:text="${yearRow}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="name" class="form-label">Quarter</label>
+                                <select class="form-select" id="quarter" aria-label="Quarter dropdown" th:onchange="reloadPage()">
+                                    <option 
+                                        th:each="quarterRow : ${quarters}" 
+                                        th:value="${quarterRow}" 
+                                        th:selected="(${quarterRow} == ${quarter})"
+                                        th:text="${quarterRow}">
+                                    </option>
+                                </select>
+                            </div>                         
+                        </div>    
+                    </div>
+                </div>
+                
+                <div class="mt-3 col-4">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Student</th>
+                                <th scope="col">Total Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="element : ${students.entrySet()}">
+                                <td th:text="${element.getValue().getFullName()}"></td>
+                                <td th:text="${element.getValue().getTotalDuration()}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+
+    </body>
+</html>

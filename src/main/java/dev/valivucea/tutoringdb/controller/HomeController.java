@@ -1,7 +1,6 @@
 package dev.valivucea.tutoringdb.controller;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;

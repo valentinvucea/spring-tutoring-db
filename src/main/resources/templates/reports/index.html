@@ -1,5 +1,5 @@
 <!doctype html>
-<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{}, ~{::main})}">
+<html th:replace="~{fragments/layout :: layout(~{::title}, ~{}, ~{::js_assets}, ~{::main})}">
     <head>
         <title>Reports Page</title>
     </head>     
@@ -61,6 +61,12 @@
             </div>
         </main>
 
-
+        <th:block th:fragment="js_assets">
+            <script type="text/javascript" th:inline="javascript">
+                function reloadFunction() {
+                    console.log('This is working!');
+                }
+            </script>
+        </th:block>
     </body>
 </html>

@@ -35,8 +35,11 @@ public class Session {
     @ManyToOne(targetEntity = Subject.class)
     private Subject subject;
 
-    @Column(nullable = false)
-    private int duration;
+    @Column(name = "duration_hours", nullable = false)
+    private int durationHours;
+
+    @Column(name = "duration_minutes", nullable = false)
+    private int durationMinutes;    
 
     @Column(columnDefinition="TEXT", length = 4000)
     private String lesson;
@@ -73,14 +76,6 @@ public class Session {
         this.subject = subject;
     }
 
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
     public String getLesson() {
         return lesson;
     }
@@ -89,4 +84,27 @@ public class Session {
         this.lesson = lesson;
     }
 
+    public int getDurationHours() {
+        return durationHours;
+    }
+
+    public void setDurationHours(int durationHours) {
+        this.durationHours = durationHours;
+    }
+
+    public int getDurationMinutes() {
+        return durationMinutes;
+    }
+
+    public void setDurationMinutes(int durationMinutes) {
+        this.durationMinutes = durationMinutes;
+    }
+
+    public String getFullDuration() {
+        String duration = this.durationMinutes + " mins";
+        if (this.durationHours > 0) {
+            duration = this.durationHours + "h " + duration;
+        }
+        return duration;
+    }
 }

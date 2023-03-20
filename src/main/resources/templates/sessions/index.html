@@ -20,6 +20,7 @@
                             <tr>
                                 <th scope="col" class="text-center">ID</th>
                                 <th scope="col">Date</th>
+                                <th scope="col">Duration</th>
                                 <th scope="col">Student</th>
                                 <th scope="col">Subject</th>
                                 <th scope="col" class="text-center">Action</th>
@@ -29,6 +30,7 @@
                             <tr th:each="entry : ${sessions}">
                                 <th scope="row" class="text-center" th:text="${entry.id}"></th>
                                 <td th:text="|${#dates.format(entry.sessionDate, 'MM/dd/yyyy')}"></td>
+                                <td th:text="|${entry.getFullDuration()}"></td>
                                 <td th:text="${entry.student.getFullName()}"></td>
                                 <td th:text="${entry.subject.name}"></td>
                                 <td class="text-center">

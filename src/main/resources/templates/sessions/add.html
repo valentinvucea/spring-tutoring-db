@@ -43,6 +43,20 @@
                                 <span th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></span>
                             </div>
                             <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="name" class="form-label">Hours</label>
+                                        <input type="number" th:field="*{durationHours}" class="form-control" id="durationHours">
+                                        <span th:if="${#fields.hasErrors('durationHours')}" th:errors="*{durationHours}"></span>        
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="name" class="form-label">Minutes</label>
+                                        <input type="number" th:field="*{durationMinutes}" class="form-control" id="durationMinutes">
+                                        <span th:if="${#fields.hasErrors('durationMinutes')}" th:errors="*{durationMinutes}"></span>        
+                                    </div>                                    
+                                </div>
+                            </div>                            
+                            <div class="mb-3">
                                 <label for="name" class="form-label">Lesson</label>
                                 <textarea th:field="*{lesson}" rows="5" class="form-control" id="lesson" aria-describedby="lesson"></textarea>
                                 <span th:if="${#fields.hasErrors('lesson')}" th:errors="*{lesson}"></span>

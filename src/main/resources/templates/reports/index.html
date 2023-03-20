@@ -63,8 +63,13 @@
 
         <th:block th:fragment="js_assets">
             <script type="text/javascript" th:inline="javascript">
-                function reloadFunction() {
-                    console.log('This is working!');
+                function reloadPage() {
+                    // get year and quarter selected
+                    const year = document.getElementById('year').value;
+                    const quarter = document.getElementById('quarter').value;
+    
+                    // redirect to the reports page with the new year and quarter in URL
+                    location.href = '/reports/' + year + '/' + quarter;
                 }
             </script>
         </th:block>

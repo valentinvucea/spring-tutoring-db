@@ -26,7 +26,7 @@ public class ReportsController {
         @PathVariable(required = false) Integer quarter
     ) {
         // Find the current year and quarter
-        LocalDate today = LocalDate.now(); 
+        LocalDate today = LocalDate.now();
         if (year == null) {
             year = today.getYear();
         }
@@ -39,7 +39,8 @@ public class ReportsController {
         HashMap<Long, StudentSessionReport> students = sessionService.getDurationByStudentAndQuarter(year, quarter);
 
         // Get the values for year dropdown (last 5 years)
-        int[] years = IntStream.rangeClosed(year - 5, year).toArray();
+        int currentYear = today.getYear();
+        int[] years = IntStream.rangeClosed(currentYear - 5, currentYear).toArray();
 
         // Get the values for quarter dropdown (1 to 4)
         int[] quarters = IntStream.rangeClosed(1, 4).toArray();;

@@ -5,3 +5,8 @@ html, body {
 body {
     padding-top: 3.5rem;
 }
+
+.validation-error {
+    color: red;
+    line-height: 1.4rem;
+}

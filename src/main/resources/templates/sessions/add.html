@@ -12,11 +12,11 @@
                 
                 <div class="row">
                     <div class="col-4">
-                        <form action="#" th:action="@{/sessions/add}" th:object="${entry}" method="post">
+                        <form action="#" th:action="@{/sessions/add}" th:object="${session}" method="post">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Date</label>
-                                <input type="date" th:value="${sessionDate}" th:field="*{sessionDate}" class="form-control" id="sessionDate" aria-describedby="sessionDate" min="2020-01-01">
-                                <span th:if="${#fields.hasErrors('sessionDate')}" th:errors="*{sessionDate}"></span>
+                                <input type="date" th:value="${sessionDate}" th:field="*{sessionDate}" class="form-control" aria-describedby="sessionDate" min="2020-01-01">
+                                <span class="validation-error" th:if="${#fields.hasErrors('sessionDate')}" th:errors="*{sessionDate}"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="name" class="form-label">Student</label>
@@ -28,7 +28,7 @@
                                         th:text="${student.getFullName()}">
                                     </option>
                                 </select>                               
-                                <span th:if="${#fields.hasErrors('student')}" th:errors="*{student}"></span>
+                                <span class="validation-error" th:if="${#fields.hasErrors('student')}" th:errors="*{student}"></span>
                             </div>                            
                             <div class="mb-3">
                                 <label for="name" class="form-label">Subject</label>
@@ -40,26 +40,26 @@
                                         th:text="${subject.name}">
                                     </option>
                                 </select>                               
-                                <span th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></span>
+                                <span class="validation-error" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></span>
                             </div>
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="name" class="form-label">Hours</label>
                                         <input type="number" th:field="*{durationHours}" class="form-control" id="durationHours">
-                                        <span th:if="${#fields.hasErrors('durationHours')}" th:errors="*{durationHours}"></span>        
+                                        <span class="validation-error" th:if="${#fields.hasErrors('durationHours')}" th:errors="*{durationHours}"></span>        
                                     </div>
                                     <div class="col-6">
                                         <label for="name" class="form-label">Minutes</label>
                                         <input type="number" th:field="*{durationMinutes}" class="form-control" id="durationMinutes">
-                                        <span th:if="${#fields.hasErrors('durationMinutes')}" th:errors="*{durationMinutes}"></span>        
+                                        <span class="validation-error" th:if="${#fields.hasErrors('durationMinutes')}" th:errors="*{durationMinutes}"></span>        
                                     </div>                                    
                                 </div>
                             </div>                            
                             <div class="mb-3">
                                 <label for="name" class="form-label">Lesson</label>
                                 <textarea th:field="*{lesson}" rows="5" class="form-control" id="lesson" aria-describedby="lesson"></textarea>
-                                <span th:if="${#fields.hasErrors('lesson')}" th:errors="*{lesson}"></span>
+                                <span class="validation-error" th:if="${#fields.hasErrors('lesson')}" th:errors="*{lesson}"></span>
                             </div>                                                        
                                                        
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -69,6 +69,5 @@
                 </div>
             </div>
         </main>
-
     </body>
 </html>

@@ -14,6 +14,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "sessions")
@@ -22,15 +24,18 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date sessionDate;
 
+    @NotNull
     @JoinColumn(name = "student_id", nullable = false)
     @ManyToOne(targetEntity = Student.class)
     private Student student;
 
+    @NotNull
     @JoinColumn(name = "subject_id", nullable = false)
     @ManyToOne(targetEntity = Subject.class)
     private Subject subject;
@@ -41,6 +46,7 @@ public class Session {
     @Column(name = "duration_minutes", nullable = false)
     private int durationMinutes;    
 
+    @NotEmpty
     @Column(columnDefinition="TEXT", length = 4000)
     private String lesson;
 

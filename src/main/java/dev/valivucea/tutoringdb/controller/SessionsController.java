@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import dev.valivucea.tutoringdb.model.Subject;
 import dev.valivucea.tutoringdb.service.SessionService;
 import dev.valivucea.tutoringdb.service.StudentService;
 import dev.valivucea.tutoringdb.service.SubjectService;
+import jakarta.validation.Valid;
 
 @Controller
 public class SessionsController {
@@ -52,16 +54,20 @@ public class SessionsController {
 
         model.addAttribute("subjects", subjects);
         model.addAttribute("students", students);
-        model.addAttribute("entry", session);
+        model.addAttribute("session", session);
         
         return "sessions/add";
     }
     
     @PostMapping({"sessions/add"})
-    public String createNewGrade(@ModelAttribute Session entry, Model model) {
-        sessionService.createSession(entry);
-        
-        return "redirect:/sessions/";
+    public String createNewGrade(@ModelAttribute @Valid Session session, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            System.out.println("BINDING RESULT ERROR");
+            return "sessions/add";
+        } else {
+            sessionService.createSession(session);
+            return "redirect:/sessions/";
+        }
     }    
     
 }

@@ -1,5 +1,6 @@
 package dev.valivucea.tutoringdb.service;
 
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import dev.valivucea.tutoringdb.model.Session;
@@ -25,4 +26,7 @@ public interface SessionService {
 
     // Get list of sessions paginated
     Page<Session> getSessionListPage(int pageNumber, int pageSize);
+
+    // Get total session duration aggregated by student and quarter
+    HashMap<Long, StudentSessionReport> getDurationByStudentAndQuarter(int year, int quarter);
 }

@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import dev.valivucea.tutoringdb.model.Grade;
 import dev.valivucea.tutoringdb.model.Session;
 import dev.valivucea.tutoringdb.model.Student;
-import dev.valivucea.tutoringdb.service.GradeService;
+import dev.valivucea.tutoringdb.model.Subject;
 import dev.valivucea.tutoringdb.service.SessionService;
 import dev.valivucea.tutoringdb.service.StudentService;
+import dev.valivucea.tutoringdb.service.SubjectService;
 
 @Controller
 public class SessionsController {
@@ -24,20 +24,20 @@ public class SessionsController {
     private StudentService studentService;
     
     @Autowired
-    private GradeService gradeService;
+    private SubjectService subjectService;
 
     @Autowired
     private SessionService sessionService;
 
-    @GetMapping({"/sessions", "sessions/index"})
+    @GetMapping({"/sessions", "sessions/"})
     public String showIndexPage(Model model) {
         List<Student> students = studentService.getStudentList();
-        List<Grade> grades = gradeService.getGradeList();
+        List<Subject> subjects = subjectService.getSubjectList();
         List<Session> sessions = sessionService.getSessionList();
 
         model.addAttribute("pageTitle", "Sessions List");
         model.addAttribute("sessions", sessions);
-        model.addAttribute("grades", grades);
+        model.addAttribute("subjects", subjects);
         model.addAttribute("students", students);
 
         return "sessions/index";
@@ -45,23 +45,23 @@ public class SessionsController {
 
     @GetMapping({"sessions/add"})
     public String showAddSessionForm(Model model) {
-        List<Grade> grades = gradeService.getGradeList();
+        List<Subject> subjects = subjectService.getSubjectList();
         List<Student> students = studentService.getStudentList();
         Session session = new Session();
         session.setSessionDate(new Date());
 
-        model.addAttribute("grades", grades);
+        model.addAttribute("subjects", subjects);
         model.addAttribute("students", students);
-        model.addAttribute("session", session);
+        model.addAttribute("entry", session);
         
         return "sessions/add";
     }
     
     @PostMapping({"sessions/add"})
-    public String createNewGrade(@ModelAttribute Session session, Model model) {
-        sessionService.createSession(session);
+    public String createNewGrade(@ModelAttribute Session entry, Model model) {
+        sessionService.createSession(entry);
         
-        return "redirect:/sessions/index";
+        return "redirect:/sessions/";
     }    
     
 }

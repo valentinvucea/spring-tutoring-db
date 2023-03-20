@@ -28,12 +28,12 @@ public class Session {
     private Date sessionDate;
 
     @JoinColumn(name = "student_id", nullable = false)
-    @ManyToOne(targetEntity = Subject.class)
+    @ManyToOne(targetEntity = Student.class)
     private Student student;
 
-    @JoinColumn(name = "grade_id", nullable = false)
-    @ManyToOne(targetEntity = Grade.class)
-    private Grade grade;    
+    @JoinColumn(name = "subject_id", nullable = false)
+    @ManyToOne(targetEntity = Subject.class)
+    private Subject subject;
 
     @Column(nullable = false)
     private int duration;
@@ -65,12 +65,12 @@ public class Session {
         this.student = student;
     }
 
-    public Grade getGrade() {
-        return grade;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public void setSubject(Grade grade) {
-        this.grade = grade;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
     public int getDuration() {
